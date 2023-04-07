@@ -13,6 +13,12 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+$router->get('/', function () {
+    $server_status = 'OK'; // aquí puedes verificar el estado del servidor
+    if ($server_status === 'OK') {
+        return response(view('status', ['message' => 'Servidor OK','estatus'=>'200 Servidor Funcionando']), 200);
+    } else {
+        return response(view('status', ['message' => 'Estamos presentando problemas técnicos','estatus'=>'500 Error de Servidor ']),500);
+
+    }
 });
