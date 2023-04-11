@@ -22,3 +22,18 @@ $router->get('/', function () {
 
     }
 });
+
+function resource($uri, $controller, $router)
+{
+    //$verbs = ['GET', 'HEAD', 'POST', 'PUT', 'PATCH', 'DELETE'];
+    $router->get($uri, $controller.'@index');
+    $router->post($uri, $controller.'@store');
+    $router->get($uri.'/{id}', $controller.'@show');
+    $router->put($uri.'/{id}', $controller.'@update');
+    $router->patch($uri.'/{id}', $controller.'@update');
+    $router->delete($uri.'/{id}', $controller.'@destroy');
+}
+resource('api/products', 'ProductsController', $router);
+
+
+
